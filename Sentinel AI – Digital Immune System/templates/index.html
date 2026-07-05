@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentinel AI | Digital Immune System</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Poppins',sans-serif;
+        }
+
+        body{
+            background:linear-gradient(135deg,#0f172a,#1e3a8a,#2563eb);
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding:20px;
+        }
+
+        .container{
+            width:100%;
+            max-width:700px;
+            background:white;
+            padding:45px;
+            border-radius:25px;
+            box-shadow:0 20px 50px rgba(0,0,0,.25);
+            text-align:center;
+        }
+
+        h1{
+            font-size:38px;
+            color:#0f172a;
+            margin-bottom:10px;
+        }
+
+        .subtitle{
+            color:#555;
+            font-size:16px;
+            margin-bottom:30px;
+        }
+
+        .features{
+            display:grid;
+            grid-template-columns:repeat(2,1fr);
+            gap:15px;
+            margin-bottom:35px;
+        }
+
+        .card{
+            background:#f8fafc;
+            border-radius:15px;
+            padding:18px;
+            border:1px solid #dbeafe;
+            transition:.3s;
+        }
+
+        .card:hover{
+            transform:translateY(-5px);
+            background:#eff6ff;
+        }
+
+        .card h3{
+            color:#2563eb;
+            font-size:18px;
+            margin-bottom:8px;
+        }
+
+        .card p{
+            color:#666;
+            font-size:14px;
+        }
+
+        input[type=text]{
+            width:100%;
+            padding:16px;
+            border-radius:12px;
+            border:2px solid #cbd5e1;
+            outline:none;
+            font-size:16px;
+            transition:.3s;
+        }
+
+        input[type=text]:focus{
+            border-color:#2563eb;
+        }
+
+        .upload-box{
+            margin:20px 0;
+            padding:20px;
+            border:2px dashed #2563eb;
+            border-radius:15px;
+            background:#f8fbff;
+        }
+
+        .upload-box h3{
+            color:#2563eb;
+            margin-bottom:15px;
+        }
+
+        .or{
+            margin:20px 0;
+            font-weight:bold;
+            color:#666;
+        }
+
+        input[type=file]{
+            width:100%;
+            padding:10px;
+        }
+
+        input[type=submit]{
+            width:100%;
+            background:#2563eb;
+            color:white;
+            padding:16px;
+            border:none;
+            border-radius:12px;
+            font-size:17px;
+            cursor:pointer;
+            transition:.3s;
+            font-weight:600;
+        }
+
+        input[type=submit]:hover{
+            background:#1d4ed8;
+        }
+
+        .error{
+            background:#ffe5e5;
+            color:#c62828;
+            padding:12px;
+            border-radius:10px;
+            margin-bottom:20px;
+            font-weight:600;
+        }
+
+        .footer{
+            margin-top:25px;
+            color:#777;
+            font-size:13px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🛡 Sentinel AI</h1>
+
+    <p class="subtitle">
+        AI-powered Digital Immune System for Detecting Phishing, Scam & Malicious Links
+    </p>
+
+    <div class="features">
+
+        <div class="card">
+            <h3>🔗 URL Scanner</h3>
+            <p>Analyze suspicious links using Machine Learning.</p>
+        </div>
+
+        <div class="card">
+            <h3>🤖 Gemini AI</h3>
+            <p>Get intelligent explanations and cyber security advice.</p>
+        </div>
+
+        <div class="card">
+            <h3>🖼 Screenshot Scan</h3>
+            <p>Analyze login pages, emails and scam screenshots.</p>
+        </div>
+
+        <div class="card">
+            <h3>🛡 Threat Report</h3>
+            <p>Understand threats before clicking dangerous links.</p>
+        </div>
+
+    </div>
+
+    {% if error %}
+    <div class="error">
+        {{ error }}
+    </div>
+    {% endif %}
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <input
+            type="text"
+            name="url"
+            placeholder="Paste a suspicious URL here...">
+
+        <div class="or">
+            ────────── OR ──────────
+        </div>
+
+        <div class="upload-box">
+
+            <h3>🖼 Upload Screenshot</h3>
+
+            <input
+                type="file"
+                name="image"
+                accept="image/png,image/jpeg,image/jpg">
+
+        </div>
+
+        <input
+            type="submit"
+            value="🛡 Analyze Threat">
+
+    </form>
+
+    <div class="footer">
+
+        Powered by Machine Learning + Gemini AI • Sentinel AI v1.1
+
+    </div>
+
+</div>
+
+</body>
+</html>

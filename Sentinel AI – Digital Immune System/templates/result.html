@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sentinel AI - Threat Report</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+body{
+
+background:linear-gradient(135deg,#0f172a,#1e3a8a,#2563eb);
+
+padding:30px;
+
+min-height:100vh;
+
+display:block;
+
+}
+
+.result-box{
+
+background:white;
+
+width:95%;
+
+max-width:1400px;
+
+padding:40px;
+
+border-radius:25px;
+
+box-shadow:0 20px 45px rgba(0,0,0,.25);
+
+margin:auto;
+
+}
+
+h1{
+
+text-align:center;
+
+color:#0f172a;
+
+margin-bottom:8px;
+
+}
+
+.subtitle{
+
+text-align:center;
+
+color:#666;
+
+margin-bottom:35px;
+
+}
+
+.result{
+
+font-size:32px;
+
+font-weight:700;
+
+text-align:center;
+
+margin-bottom:25px;
+
+}
+
+.score-title{
+
+font-weight:600;
+
+margin-bottom:8px;
+
+font-size:18px;
+
+}
+
+.progress{
+
+height:20px;
+
+background:#dbeafe;
+
+border-radius:50px;
+
+overflow:hidden;
+
+margin-bottom:10px;
+
+}
+
+.progress-bar{
+
+height:100%;
+
+transition:.5s;
+
+}
+
+.score-text{
+
+text-align:right;
+
+font-weight:bold;
+
+color:#444;
+
+margin-bottom:30px;
+
+}
+
+.section{
+
+background:#f8fafc;
+
+border-left:6px solid #2563eb;
+
+padding:20px;
+
+border-radius:15px;
+
+margin-bottom:20px;
+
+}
+
+.section h3{
+
+margin-bottom:15px;
+
+color:#1d4ed8;
+
+}
+
+.section ul{
+
+padding-left:20px;
+
+}
+
+.section li{
+
+margin-bottom:8px;
+
+line-height:1.6;
+
+}
+
+.ai-box{
+
+background:#eef7ff;
+
+border-left:6px solid #10b981;
+
+padding:20px;
+
+border-radius:15px;
+
+margin-bottom:20px;
+
+white-space:pre-wrap;
+
+line-height:1.8;
+
+}
+
+.button{
+
+display:block;
+
+text-align:center;
+
+padding:16px;
+
+background:#2563eb;
+
+color:white;
+
+text-decoration:none;
+
+font-weight:bold;
+
+border-radius:12px;
+
+transition:.3s;
+
+}
+
+.button:hover{
+
+background:#1d4ed8;
+
+}
+
+.footer{
+
+margin-top:25px;
+
+text-align:center;
+
+font-size:13px;
+
+color:#777;
+
+}
+.threat-grid{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+gap:15px;
+
+margin-top:15px;
+
+}
+
+.threat-card{
+
+background:white;
+
+border:1px solid #dbeafe;
+
+border-radius:15px;
+
+padding:18px;
+
+box-shadow:0 4px 10px rgba(0,0,0,.08);
+
+transition:.3s;
+
+}
+
+.threat-card:hover{
+
+transform:translateY(-5px);
+
+}
+
+.threat-card h4{
+
+color:#2563eb;
+
+margin-bottom:10px;
+
+font-size:16px;
+
+}
+
+.threat-card p{
+
+font-size:15px;
+
+font-weight:600;
+
+color:#333;
+
+line-height:1.5;
+
+}
+.main-grid{
+
+display:grid;
+
+grid-template-columns:420px 1fr;
+
+gap:30px;
+
+margin-top:30px;
+
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="result-box">
+
+<h1>🛡 Sentinel AI</h1>
+
+<p class="subtitle">
+
+Digital Threat Analysis Report
+
+</p>
+
+<div class="result">
+
+{{ result }}
+<div class="main-grid"></div>
+</div>
+{% if image_path %}
+
+<div class="section">
+
+<h3>🖼 Uploaded Screenshot</h3>
+
+<img
+src="{{ image_path }}"
+style="
+width:100%;
+max-height:420px;
+object-fit:contain;
+border-radius:15px;
+border:2px solid #dbeafe;
+margin-top:10px;
+">
+
+</div>
+
+{% endif %}
+
+<div class="score-title">
+
+Threat Score
+
+</div>
+
+<div class="progress">
+
+<div class="progress-bar"
+
+style="width:{{score}}%; background:{{color}};">
+
+</div>
+
+</div>
+
+<div class="score-text">
+
+{{score}}%
+
+</div>
+
+
+<div class="section">
+
+<h3>⚠ Threat Indicators</h3>
+
+<ul>
+
+{% for item in reasons %}
+
+<li>{{ item }}</li>
+
+{% endfor %}
+
+</ul>
+
+</div>
+
+<div class="section">
+
+<h3>🛡 Security Recommendations</h3>
+
+<ul>
+
+{% for item in advice %}
+
+<li>{{ item }}</li>
+
+{% endfor %}
+
+</ul>
+
+</div>
+
+<div class="ai-box">
+<div class="section">
+
+<h3>🎯 Threat Classification</h3>
+
+<div class="threat-grid">
+
+<div class="threat-card">
+<h4>🎯 Category</h4>
+<p>{{ threat.category }}</p>
+</div>
+
+<div class="threat-card">
+<h4>⚠ Risk Level</h4>
+<p>{{ threat.risk }}</p>
+</div>
+
+<div class="threat-card">
+<h4>🎯 Target</h4>
+<p>{{ threat.target }}</p>
+</div>
+
+<div class="threat-card">
+<h4>📊 Confidence</h4>
+<p>{{ threat.confidence }}</p>
+</div>
+
+<div class="threat-card">
+<h4>🔥 Severity</h4>
+<p>{{ threat.severity }}</p>
+</div>
+
+<div class="threat-card">
+<h4>🛡 Recommended Action</h4>
+<p>{{ threat.action }}</p>
+</div>
+
+</div>
+
+</div>
+
+</div>
+<div class="section">
+
+<h3>📋 Scan Information</h3>
+
+<p><strong>Scanner:</strong> Sentinel AI</p>
+
+<p><strong>Analysis Engine:</strong> Machine Learning + Gemini AI</p>
+
+<p><strong>Status:</strong> Completed</p>
+
+</div>
+<h3>🤖 Gemini AI Analysis</h3>
+
+<div
+style="
+white-space:pre-wrap;
+line-height:1.9;
+font-size:15px;
+">
+
+{{ ai_response }}
+
+</div>
+
+</div>
+
+<div class="section">
+
+<h3>📌 Sentinel Recommendation</h3>
+
+<p>
+
+Always verify suspicious links before entering passwords or personal information.
+
+Never trust urgent messages asking you to login, verify your account, or claim rewards.
+
+</p>
+
+</div>
+<a href="#"
+class="button"
+style="background:#16a34a;margin-bottom:15px;">
+
+📄 Download Threat Report (Coming Soon)
+
+</a>
+<a href="/" class="button">
+
+🔍 Analyze Another URL
+
+</a>
+
+<div class="footer">
+
+Sentinel AI v2.0
+
+AI Powered Cyber Threat Intelligence Platform
+
+Machine Learning • Gemini AI • Threat Classification
+</div>
+
+</div>
+
+</body>
+
+</html>
